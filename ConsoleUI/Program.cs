@@ -12,33 +12,42 @@ namespace ConsoleUI
             //ProductManager productManager = new ProductManager(new InMemoryProductDal()); //burada daha sonra inMemory değil entityFramework verse
             //onun kodları çalışacak.
             //Business katmanında hiçbir değişiklik yapmana gerek kalmayacak.
-           // ProductTest();
-            Console.WriteLine("**************************");
+             ProductTest();
+           // CategoryTest();
+
+        }
+
+        private static void CategoryTest()
+        {
             CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
-            foreach(var category in categoryManager.GetAll()) {
+            foreach (var category in categoryManager.GetAll())
+            {
                 Console.WriteLine(category.CategoryName);
             }
-
-
         }
 
         private static void ProductTest()
         {
             ProductManager productManager = new ProductManager(new EfProductDal());
 
-            foreach (var product in productManager.GetAll())
-            {
-                Console.WriteLine(product.ProductName);
-            }
+            //foreach (var product in productManager.GetAll())
+            //{
+            //    Console.WriteLine(product.ProductName);
+            //}
 
-            foreach (var product in productManager.GetAllByCategoryId(2))
-            {
-                Console.WriteLine(product.ProductName);
-            }
+            //foreach (var product in productManager.GetAllByCategoryId(2))
+            //{
+            //    Console.WriteLine(product.ProductName);
+            //}
 
-            foreach (var product in productManager.GetByUnitPrice(2, 100))
+            //foreach (var product in productManager.GetByUnitPrice(2, 100))
+            //{
+            //    Console.WriteLine(product.ProductName);
+            //}
+
+            foreach (var product in productManager.GetProductDetails())
             {
-                Console.WriteLine(product.ProductName);
+                Console.WriteLine(product.ProductName+"/"+product.CategoryName);
             }
         }
     }
